@@ -6,3 +6,4 @@ This is a binary calculator adding basic functionality like add, subtract, multi
 ## Meetings
 ### Sunday @ 2pm
 This meeting was the origional meeting to divide the work and set expectations for the project.
+Whole team was present.
