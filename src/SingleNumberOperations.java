@@ -1,8 +1,8 @@
 public class SingleNumberOperations {
-    public int getSquare(int number) {
+    public static int getSquare(int number) {
         return (int) Math.pow(number, 2);
     }
-    public int getSquareRoot(int number) {
+    public static int getSquareRoot(int number) {
         return (int) Math.sqrt(number);
     }
 }
