@@ -5,7 +5,7 @@ This is a binary calculator adding basic functionality like add, subtract, multi
 - Chris Bucker = Two digit operations
 - Hunter = Single numbered operators
 - Will = Connecting UI
-- Jacob = Conversation methods
+- Jacob = Conversion methods
 
 ## Meetings
 ### Sunday, September 6 @ 2pm
