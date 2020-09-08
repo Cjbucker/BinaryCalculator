@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestDoubleNumberOperation {
     @Test
     public void testAddition(){
-        assertEquals(108, DoubleNumberOperation.add(6,102));
+
+        assertEquals("", DoubleNumberOperation.add("6","102"));
     }
 
     @Test
