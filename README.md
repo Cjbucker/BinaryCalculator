@@ -14,3 +14,4 @@ All team was there.
 
 ### Tuesday, September 8 @ 3pm
 This meeting is to check progress and start working on integrating components together.
+GUI and logic were complete, just linking the two components together now.
