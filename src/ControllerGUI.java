@@ -14,16 +14,14 @@ public class ControllerGUI {
     private double doubleNum = 0;
     private double totalVal;
     private boolean binaryToggle;
-    private DoubleNumberOperation doubleNumberOperator;
     private Converter converter;
 
     public ControllerGUI(GUI gui){
 
         final GUI calculatorGUI = gui;
-        doubleNumberOperator = new DoubleNumberOperation();
         converter = new Converter();
 
-        binaryToggle = false;
+        binaryToggle = true;
 
         calculatorGUI.button0.addActionListener(new ActionListener() {
             @Override
@@ -77,7 +75,9 @@ public class ControllerGUI {
         calculatorGUI.btnSquare.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                calculatorGUI.textScreen.append("x²");
+                strNum1 = calculatorGUI.textScreen.getText();
+                strTotal = SingleNumberOperations.getSquare(strNum1);
+                PrintResult(calculatorGUI, strTotal);
             }
         });
 
@@ -85,13 +85,9 @@ public class ControllerGUI {
         calculatorGUI.btnRoot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (calculatorGUI.btnRoot.isSelected());
-                strNum1 = statement[0];
-                strNum2 = statement[1];
-                doubleNum = Double.parseDouble(strNum1);
-                totalVal = Math.sqrt(doubleNum);
-                strTotal = Double.toString(totalVal);
-                calculatorGUI.textScreen.setText(strTotal);
+                strNum1 = calculatorGUI.textScreen.getText();
+                strTotal = SingleNumberOperations.getSquareRoot(strNum1);
+                PrintResult(calculatorGUI, strTotal);
 
             }
         });
@@ -100,10 +96,9 @@ public class ControllerGUI {
         calculatorGUI.btnClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (calculatorGUI.btnClear.isSelected()) {
-                    calculatorGUI.textScreen.setText("");
-                    calculatorGUI.resultScreen.setText("");
-                }
+                calculatorGUI.textScreen.setText("");
+                calculatorGUI.resultScreen.setText("");
+
             }
         });
 
@@ -114,7 +109,7 @@ public class ControllerGUI {
                 if (binaryToggle){
                     binaryToggle = false;
                     String value = calculatorGUI.resultScreen.getText();
-                    strTotal = converter.toBinary(value);
+                    strTotal = converter.toDecimal(value);
                     calculatorGUI.resultScreen.setText(strTotal);
                 }
                 else{
@@ -134,61 +129,43 @@ public class ControllerGUI {
                     statement = calculatorGUI.textScreen.getText().split("\\/");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
-
-                    num1 = Integer.parseInt(strNum1);
-                    num2 = Integer.parseInt(strNum2);
-
-                    totalValue = num1 / num2;
-                    strTotal = Integer.toString(totalValue);
-                    calculatorGUI.resultScreen.setText(strTotal);
+                    strTotal = DoubleNumberOperation.divide(strNum1, strNum2);
 
                 }
                 if(calculatorGUI.textScreen.getText().contains("*")) {
                     statement = calculatorGUI.textScreen.getText().split("\\*");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
-
-                    num1 = Integer.parseInt(strNum1);
-                    num2 = Integer.parseInt(strNum2);
-
-                    totalValue = num1 + num2;
-
-                    strTotal = Integer.toString(totalValue);
-                    calculatorGUI.resultScreen.setText(strTotal);
+                    strTotal = DoubleNumberOperation.multiply(strNum1, strNum2);
                 }
+
                 if(calculatorGUI.textScreen.getText().contains("-")) {
                     statement = calculatorGUI.textScreen.getText().split("\\-");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
-
-                    num1 = Integer.parseInt(strNum1);
-                    num2 = Integer.parseInt(strNum2);
-
-                    totalValue = num1 - num2;
-
-                    strTotal = Integer.toString(totalValue);
-                    calculatorGUI.resultScreen.setText(strTotal);
+                    strTotal = DoubleNumberOperation.subtract(strNum1, strNum2);
                 }
-                
+
                 if(calculatorGUI.textScreen.getText().contains("+")) {
                     statement = calculatorGUI.textScreen.getText().split("\\+");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
+                    strTotal = DoubleNumberOperation.add(strNum1, strNum2);
+                }
+                PrintResult(calculatorGUI, strTotal);
 
-                    strTotal = doubleNumberOperator.add(strNum1, strNum2);
-                }
-
-                if(binaryToggle){
-                    calculatorGUI.resultScreen.setText(strTotal);
-                }
-                else{
-                    strTotal = converter.toDecimal(strTotal);
-                    calculatorGUI.resultScreen.setText(strTotal);
-                }
             }
         });
+    }
 
-
+    void PrintResult(GUI calculatorGUI, String result){
+        if(binaryToggle){
+            calculatorGUI.resultScreen.setText(result);
+        }
+        else{
+            result = converter.toDecimal(result);
+            calculatorGUI.resultScreen.setText(result);
+        }
     }
 }
 
