@@ -7,18 +7,14 @@ public class ControllerGUI {
     private String strNum1 = "";
     private String strNum2 = "";
     private String[] statement;
-    private int num1 = 0;
-    private int num2 = 0;
     private String strTotal = "";
-    private int totalValue = 0;
-    private double doubleNum = 0;
-    private double totalVal;
     private boolean binaryToggle;
     private Converter converter;
+    private GUI calculatorGUI;
 
     public ControllerGUI(GUI gui){
 
-        final GUI calculatorGUI = gui;
+        calculatorGUI = gui;
         converter = new Converter();
 
         binaryToggle = true;
@@ -75,9 +71,16 @@ public class ControllerGUI {
         calculatorGUI.btnSquare.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                strNum1 = calculatorGUI.textScreen.getText();
-                strTotal = SingleNumberOperations.getSquare(strNum1);
-                PrintResult(calculatorGUI, strTotal);
+                try {
+                    strNum1 = calculatorGUI.textScreen.getText();
+                    strTotal = SingleNumberOperations.getSquare(strNum1);
+                    PrintResult(strTotal);
+                }
+                catch(Exception err){
+                    strTotal = "Error. Operator not allowed.";
+                    PrintResult(strTotal);
+                    System.out.println(err);
+                }
             }
         });
 
@@ -85,9 +88,16 @@ public class ControllerGUI {
         calculatorGUI.btnRoot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                strNum1 = calculatorGUI.textScreen.getText();
-                strTotal = SingleNumberOperations.getSquareRoot(strNum1);
-                PrintResult(calculatorGUI, strTotal);
+                try {
+                    strNum1 = calculatorGUI.textScreen.getText();
+                    strTotal = SingleNumberOperations.getSquareRoot(strNum1);
+                    PrintResult(strTotal);
+                }
+                catch(Exception err){
+                    strTotal = "Error. Operator not allowed.";
+                    PrintResult(strTotal);
+                    System.out.println(err);
+                }
 
             }
         });
@@ -125,40 +135,44 @@ public class ControllerGUI {
         calculatorGUI.btnEqual.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(calculatorGUI.textScreen.getText().contains("/")) {
-                    statement = calculatorGUI.textScreen.getText().split("\\/");
-                    strNum1 = statement[0];
-                    strNum2 = statement[1];
-                    strTotal = DoubleNumberOperation.divide(strNum1, strNum2);
+                try {
+                    if (calculatorGUI.textScreen.getText().contains("/")) {
+                        statement = calculatorGUI.textScreen.getText().split("\\/");
+                        strNum1 = statement[0];
+                        strNum2 = statement[1];
+                        strTotal = DoubleNumberOperation.divide(strNum1, strNum2);
 
+                    } else if (calculatorGUI.textScreen.getText().contains("*")) {
+                        statement = calculatorGUI.textScreen.getText().split("\\*");
+                        strNum1 = statement[0];
+                        strNum2 = statement[1];
+                        strTotal = DoubleNumberOperation.multiply(strNum1, strNum2);
+                    } else if (calculatorGUI.textScreen.getText().contains("-")) {
+                        statement = calculatorGUI.textScreen.getText().split("\\-");
+                        strNum1 = statement[0];
+                        strNum2 = statement[1];
+                        strTotal = DoubleNumberOperation.subtract(strNum1, strNum2);
+                    } else if (calculatorGUI.textScreen.getText().contains("+")) {
+                        statement = calculatorGUI.textScreen.getText().split("\\+");
+                        strNum1 = statement[0];
+                        strNum2 = statement[1];
+                        strTotal = DoubleNumberOperation.add(strNum1, strNum2);
+                    } else {
+                        strTotal = "Error.";
+                    }
+                    PrintResult(strTotal);
                 }
-                if(calculatorGUI.textScreen.getText().contains("*")) {
-                    statement = calculatorGUI.textScreen.getText().split("\\*");
-                    strNum1 = statement[0];
-                    strNum2 = statement[1];
-                    strTotal = DoubleNumberOperation.multiply(strNum1, strNum2);
+                catch(Exception err){
+                    strTotal = "Error. Only one operator allowed.";
+                    PrintResult(strTotal);
+                    System.out.println(err);
                 }
-
-                if(calculatorGUI.textScreen.getText().contains("-")) {
-                    statement = calculatorGUI.textScreen.getText().split("\\-");
-                    strNum1 = statement[0];
-                    strNum2 = statement[1];
-                    strTotal = DoubleNumberOperation.subtract(strNum1, strNum2);
-                }
-
-                if(calculatorGUI.textScreen.getText().contains("+")) {
-                    statement = calculatorGUI.textScreen.getText().split("\\+");
-                    strNum1 = statement[0];
-                    strNum2 = statement[1];
-                    strTotal = DoubleNumberOperation.add(strNum1, strNum2);
-                }
-                PrintResult(calculatorGUI, strTotal);
 
             }
         });
     }
 
-    void PrintResult(GUI calculatorGUI, String result){
+    void PrintResult(String result){
         if(binaryToggle){
             calculatorGUI.resultScreen.setText(result);
         }

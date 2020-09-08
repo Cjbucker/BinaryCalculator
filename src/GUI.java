@@ -1,7 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUI {
     protected JFrame frame = new   JFrame("Calculator");
@@ -9,6 +6,9 @@ public class GUI {
 
     protected JTextArea textScreen = new JTextArea();
     protected JTextArea resultScreen = new JTextArea();
+
+    JLabel equationText = new JLabel("Equation", JLabel.CENTER);
+    JLabel resultText = new JLabel("Result", JLabel.CENTER);
 
     //toggle button
     protected JButton btnToggle = new JButton("Binary/Decimal");
@@ -24,7 +24,7 @@ public class GUI {
     protected JButton btnAdd = new JButton ("+");
     protected JButton btnSubtract = new JButton("-");
 
-    protected JButton btnRoot = new JButton("√x ");
+    protected JButton btnRoot = new JButton("√x");
     protected JButton btnSquare = new JButton ("x²");
 
     protected JButton btnEqual = new JButton("=");
@@ -45,15 +45,21 @@ public class GUI {
         panel.add(btnEqual);
         panel.add(btnClear);
         panel.add(btnToggle);
+        panel.add(equationText);
+        panel.add(resultText);
 
-        //panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-        //panel.setLayout(new GridLayout(0,1));
+
         panel.setLayout(null);
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(400,550);
 
+
+        equationText.setLocation(2, 40);
+        resultText.setLocation(190, 40);
+        equationText.setSize(60,60);
+        resultText.setSize(60,60);
 
         //textScreen Attributes
         textScreen.setSize(175, 50);
@@ -64,42 +70,39 @@ public class GUI {
         resultScreen.setLocation(200, 5);
         resultScreen.setEditable(false);
 
-
-        button0.setSize(100, 50);
-        button0.setLocation(100, 300);
-
-        btnEqual.setSize(50,50);
+        btnEqual.setSize(60,50);
         btnEqual.setLocation(310,460);
 
-        button1.setSize(100,50);
-        button1.setLocation(200,300);
-
-        btnDivide.setSize(50,50);
+        btnDivide.setSize(60,50);
         btnDivide.setLocation(310,150);
 
-        btnMultiply.setSize(50,50);
+        btnMultiply.setSize(60,50);
         btnMultiply.setLocation(310,200);
 
-        btnAdd.setSize(50,50);
+        btnAdd.setSize(60,50);
         btnAdd.setLocation(310,250);
 
-        btnSubtract.setSize(50,50);
+        btnSubtract.setSize(60,50);
         btnSubtract.setLocation(310,300 );
 
-        btnSquare.setSize(50,50);
+        btnSquare.setSize(60,50);
         btnSquare.setLocation(310,350);
 
-        btnRoot.setSize(50,50);
+        btnRoot.setSize(60,50);
         btnRoot.setLocation(310,400);
 
-        btnClear.setSize(100,50);
-        btnClear.setLocation(30,150);
+        btnClear.setSize(125,50);
+        btnClear.setLocation(25,150);
 
-        btnToggle.setSize(100,50);
-        btnToggle.setLocation(30,200);
+        btnToggle.setSize(125,50);
+        btnToggle.setLocation(160,150);
 
-        btnEqual.setSize(50,50);
-        btnEqual.setLocation(310,460);
+        button0.setSize(125, 50);
+        button0.setLocation(25, 250);
+
+        button1.setSize(125,50);
+        button1.setLocation(160, 250);
+
     }
 
     public static void main(String [] args){
