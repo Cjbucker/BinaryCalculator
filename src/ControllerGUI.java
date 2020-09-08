@@ -3,163 +3,135 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControllerGUI {
-    private JFrame frame = new   JFrame("Calculator");
 
-    private JTextArea textScreen = new JTextArea();
-
-    //Calculation Variables
-    String strNum1 = "";
-    String strNum2 = "";
-    String[] statement;
-    int num1 = 0;
-    int num2 = 0;
-    String strTotal = "";
-    int totalValue = 0;
+    private String strNum1 = "";
+    private String strNum2 = "";
+    private String[] statement;
+    private int num1 = 0;
+    private int num2 = 0;
+    private String strTotal = "";
+    private int totalValue = 0;
     private double doubleNum = 0;
     private double totalVal;
+    private boolean binaryToggle;
+    private DoubleNumberOperation doubleNumberOperator;
+    private Converter converter;
 
+    public ControllerGUI(GUI gui){
 
+        final GUI calculatorGUI = gui;
+        doubleNumberOperator = new DoubleNumberOperation();
+        converter = new Converter();
 
-    //toggle button
-    private JButton btnToggle = new JButton("Binary/Decimal");
+        binaryToggle = false;
 
-    //Add Number Buttons to screen
-    private JButton button0 = new JButton("0");
-    private JButton button1 = new JButton("1 ");
-
-
-    //Add operator buttons to screens
-    private JButton btnDivide = new JButton("/");
-    private JButton btnMultiply  = new JButton("*");
-    private JButton btnAdd = new JButton ("+");
-    private JButton btnSubtract = new JButton("-");
-
-    private JButton btnRoot = new JButton("√x ");
-    private JButton btnSquare = new JButton ("x²");
-
-    private JButton btnEqual = new JButton("=");
-    private JButton btnClear = new JButton("Clear");
-
-
-    public ControllerGUI(){
-        //Frame Attributes
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
-        frame.setVisible(true);
-        frame.setSize(400,550);
-        frame.setLayout(null);
-
-        //textScreen Attributes
-        textScreen.setSize(380,100);
-        textScreen.setLocation(7,5);
-        textScreen.setEditable(false);
-
-
-        button0.setSize(100,50);
-        button0.setLocation(100,300);
-        button0.addActionListener(new ActionListener() {
+        calculatorGUI.button0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textScreen.append("0");
-            }
-        });
-        button1.setSize(100,50);
-        button1.setLocation(200,300);
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textScreen.append("1");
+                calculatorGUI.textScreen.append("0");
             }
         });
 
-        btnDivide.setSize(50,50);
-        btnDivide.setLocation(310,150);
-        btnDivide.addActionListener(new ActionListener() {
+        calculatorGUI.button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textScreen.append("/");
+                calculatorGUI.textScreen.append("1");
             }
         });
 
-        btnMultiply.setSize(50,50);
-        btnMultiply.setLocation(310,200);
-        btnMultiply.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnDivide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textScreen.append("*");
+                calculatorGUI.textScreen.append("/");
             }
         });
 
-        btnAdd.setSize(50,50);
-        btnAdd.setLocation(310,250);
-        btnAdd.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnMultiply.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textScreen.append("+");
+                calculatorGUI.textScreen.append("*");
+            }
+        });
+
+
+        calculatorGUI.btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calculatorGUI.textScreen.append("+");
 
             }
         });
 
-        btnSubtract.setSize(50,50);
-        btnSubtract.setLocation(310,300 );
-        btnSubtract.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnSubtract.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textScreen.append("-");
+                calculatorGUI.textScreen.append("-");
 
             }
         });
 
-        btnSquare.setSize(50,50);
-        btnSquare.setLocation(310,350);
-        btnSquare.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnSquare.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textScreen.append("x²");
+                calculatorGUI.textScreen.append("x²");
             }
         });
 
-        btnRoot.setSize(50,50);
-        btnRoot.setLocation(310,400);
-        btnRoot.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnRoot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (btnRoot.isSelected());
+                if (calculatorGUI.btnRoot.isSelected());
                 strNum1 = statement[0];
                 strNum2 = statement[1];
                 doubleNum = Double.parseDouble(strNum1);
                 totalVal = Math.sqrt(doubleNum);
                 strTotal = Double.toString(totalVal);
-                textScreen.setText(strTotal);
+                calculatorGUI.textScreen.setText(strTotal);
 
             }
         });
 
-        btnClear.setSize(100,50);
-        btnClear.setLocation(30,150);
-        btnClear.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (btnClear.isSelected());
-                textScreen.setText("");
+                if (calculatorGUI.btnClear.isSelected()) {
+                    calculatorGUI.textScreen.setText("");
+                    calculatorGUI.resultScreen.setText("");
+                }
             }
         });
 
-        btnToggle.setSize(100,50);
-        btnToggle.setLocation(30,200);
-        btnToggle.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnToggle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if (binaryToggle){
+                    binaryToggle = false;
+                    String value = calculatorGUI.resultScreen.getText();
+                    strTotal = converter.toBinary(value);
+                    calculatorGUI.resultScreen.setText(strTotal);
+                }
+                else{
+                    binaryToggle = true;
+                    String value = calculatorGUI.resultScreen.getText();
+                    strTotal = converter.toBinary(value);
+                    calculatorGUI.resultScreen.setText(strTotal);
+                }
             }
         });
 
-        btnEqual.setSize(50,50);
-        btnEqual.setLocation(310,460);
-        btnEqual.addActionListener(new ActionListener() {
+
+        calculatorGUI.btnEqual.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(textScreen.getText().contains("/")) {
-                    statement = textScreen.getText().split("\\/");
+                if(calculatorGUI.textScreen.getText().contains("/")) {
+                    statement = calculatorGUI.textScreen.getText().split("\\/");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
 
@@ -168,11 +140,11 @@ public class ControllerGUI {
 
                     totalValue = num1 / num2;
                     strTotal = Integer.toString(totalValue);
-                    textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
 
                 }
-                if(textScreen.getText().contains("+")) {
-                    statement = textScreen.getText().split("\\+");
+                if(calculatorGUI.textScreen.getText().contains("*")) {
+                    statement = calculatorGUI.textScreen.getText().split("\\*");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
 
@@ -182,23 +154,10 @@ public class ControllerGUI {
                     totalValue = num1 + num2;
 
                     strTotal = Integer.toString(totalValue);
-                    textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
                 }
-                if(textScreen.getText().contains("*")) {
-                    statement = textScreen.getText().split("\\*");
-                    strNum1 = statement[0];
-                    strNum2 = statement[1];
-
-                    num1 = Integer.parseInt(strNum1);
-                    num2 = Integer.parseInt(strNum2);
-
-                    totalValue = num1 + num2;
-
-                    strTotal = Integer.toString(totalValue);
-                    textScreen.setText(strTotal);
-                }
-                if(textScreen.getText().contains("-")) {
-                    statement = textScreen.getText().split("\\-");
+                if(calculatorGUI.textScreen.getText().contains("-")) {
+                    statement = calculatorGUI.textScreen.getText().split("\\-");
                     strNum1 = statement[0];
                     strNum2 = statement[1];
 
@@ -208,29 +167,28 @@ public class ControllerGUI {
                     totalValue = num1 - num2;
 
                     strTotal = Integer.toString(totalValue);
-                    textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
+                }
+                
+                if(calculatorGUI.textScreen.getText().contains("+")) {
+                    statement = calculatorGUI.textScreen.getText().split("\\+");
+                    strNum1 = statement[0];
+                    strNum2 = statement[1];
+
+                    strTotal = doubleNumberOperator.add(strNum1, strNum2);
+                }
+
+                if(binaryToggle){
+                    calculatorGUI.resultScreen.setText(strTotal);
+                }
+                else{
+                    strTotal = converter.toDecimal(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
                 }
             }
         });
 
 
-        //add Objects to Screen
-        frame.add(textScreen);
-        frame.add(button0);
-        frame.add(button1);
-        frame.add(btnDivide);
-        frame.add(btnMultiply);
-        frame.add(btnAdd);
-        frame.add(btnSubtract);
-        frame.add(btnRoot);
-        frame.add(btnSquare);
-        frame.add(btnEqual);
-        frame.add(btnClear);
-        frame.add(btnToggle);
-
-    }
-    public static void main(String [] args){
-        new ControllerGUI();
     }
 }
 
