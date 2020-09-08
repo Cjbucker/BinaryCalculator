@@ -169,8 +169,7 @@ public class ControllerGUI {
                     strTotal = Integer.toString(totalValue);
                     calculatorGUI.resultScreen.setText(strTotal);
                 }
-
-
+                
                 if(calculatorGUI.textScreen.getText().contains("+")) {
                     statement = calculatorGUI.textScreen.getText().split("\\+");
                     strNum1 = statement[0];
