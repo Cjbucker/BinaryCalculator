@@ -4,6 +4,6 @@ public class SingleNumberOperations {
     }
     public static String getSquareRoot(String number) {
 //        Make number positive to handle square root with integers without handling unreal
-        return String.valueOf((int) Math.sqrt(Double.parseDouble(number)));
+        return String.valueOf((int) Math.sqrt(Math.abs(Double.parseDouble(number))));
     }
 }
