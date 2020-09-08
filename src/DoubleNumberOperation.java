@@ -1,23 +1,37 @@
 public class DoubleNumberOperation {
 
-    public static int multiply(int valueOne, int valueTwo) {
-        return Math.multiplyExact(valueOne, valueTwo);
+    static Converter numberConverter = new Converter();
+
+    public static String multiply(String strValueOne, String strValueTwo) {
+        int valueOne = Integer.parseInt(numberConverter.toDecimal(strValueOne));
+        int valueTwo = Integer.parseInt(numberConverter.toDecimal(strValueTwo));
+        String decimal = Integer.toString(Math.multiplyExact(valueOne, valueTwo));
+        return numberConverter.toBinary(decimal);
     }
 
-    public static int divide(int valueOne, int valueTwo) {
+    public static String divide(String strValueOne, String strValueTwo) {
+        int valueOne = Integer.parseInt(numberConverter.toDecimal(strValueOne));
+        int valueTwo = Integer.parseInt(numberConverter.toDecimal(strValueTwo));
         try {
-            return Math.floorDiv(valueOne, valueTwo);
+            String decimal = Integer.toString(Math.floorDiv(valueOne, valueTwo));
+            return numberConverter.toBinary(decimal);
         } catch (ArithmeticException e) {
-            return 0;
+            return "0";
         }
     }
 
-    public static int add(int valueOne, int valueTwo) {
-        return Math.addExact(valueOne, valueTwo);
+    public static String add(String strValueOne, String strValueTwo) {
+        int valueOne = Integer.parseInt(numberConverter.toDecimal(strValueOne));
+        int valueTwo = Integer.parseInt(numberConverter.toDecimal(strValueTwo));
+        String decimal = Integer.toString(Math.addExact(valueOne, valueTwo));
+        return numberConverter.toBinary(decimal);
     }
 
-    public static int subtract(int valueOne, int valueTwo) {
-        return Math.subtractExact(valueOne, valueTwo);
+    public static String subtract(String strValueOne, String strValueTwo) {
+        int valueOne = Integer.parseInt(numberConverter.toDecimal(strValueOne));
+        int valueTwo = Integer.parseInt(numberConverter.toDecimal(strValueTwo));
+        String decimal = Integer.toString(Math.subtractExact(valueOne, valueTwo));
+        return numberConverter.toBinary(decimal);
     }
 
 }
