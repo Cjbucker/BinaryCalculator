@@ -13,12 +13,17 @@ public class ControllerGUI {
     private int totalValue = 0;
     private double doubleNum = 0;
     private double totalVal;
+    private boolean binaryToggle;
     private DoubleNumberOperation doubleNumberOperator;
+    private Converter converter;
 
     public ControllerGUI(GUI gui){
 
         final GUI calculatorGUI = gui;
         doubleNumberOperator = new DoubleNumberOperation();
+        converter = new Converter();
+
+        binaryToggle = false;
 
         calculatorGUI.button0.addActionListener(new ActionListener() {
             @Override
@@ -104,7 +109,7 @@ public class ControllerGUI {
         calculatorGUI.btnToggle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
 
@@ -124,15 +129,6 @@ public class ControllerGUI {
                     strTotal = Integer.toString(totalValue);
                     calculatorGUI.textScreen.setText(strTotal);
 
-                }
-                if(calculatorGUI.textScreen.getText().contains("+")) {
-                    statement = calculatorGUI.textScreen.getText().split("\\+");
-                    strNum1 = statement[0];
-                    strNum2 = statement[1];
-
-                    strTotal = doubleNumberOperator.add(strNum1, strNum2);
-
-                    calculatorGUI.textScreen.setText(strTotal);
                 }
                 if(calculatorGUI.textScreen.getText().contains("*")) {
                     statement = calculatorGUI.textScreen.getText().split("\\*");
@@ -158,6 +154,22 @@ public class ControllerGUI {
                     totalValue = num1 - num2;
 
                     strTotal = Integer.toString(totalValue);
+                    calculatorGUI.textScreen.setText(strTotal);
+                }
+
+
+                if(calculatorGUI.textScreen.getText().contains("+")) {
+                    statement = calculatorGUI.textScreen.getText().split("\\+");
+                    strNum1 = statement[0];
+                    strNum2 = statement[1];
+
+                    strTotal = doubleNumberOperator.add(strNum1, strNum2);
+                }
+                if(binaryToggle){
+                    calculatorGUI.textScreen.setText(strTotal);
+                }
+                else{
+                    strTotal = converter.toDecimal(strTotal);
                     calculatorGUI.textScreen.setText(strTotal);
                 }
             }
