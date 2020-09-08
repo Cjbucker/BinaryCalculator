@@ -8,19 +8,7 @@ public class GUI {
     protected JPanel panel = new JPanel();
 
     protected JTextArea textScreen = new JTextArea();
-
-    //Calculation Variables
-    String strNum1 = "";
-    String strNum2 = "";
-    String[] statement;
-    int num1 = 0;
-    int num2 = 0;
-    String strTotal = "";
-    int totalValue = 0;
-    private double doubleNum = 0;
-    private double totalVal;
-
-
+    protected JTextArea resultScreen = new JTextArea();
 
     //toggle button
     protected JButton btnToggle = new JButton("Binary/Decimal");
@@ -45,6 +33,7 @@ public class GUI {
     public GUI() {
         //Frame Attributes
         panel.add(textScreen);
+        panel.add(resultScreen);
         panel.add(button0);
         panel.add(button1);
         panel.add(btnDivide);
@@ -67,9 +56,13 @@ public class GUI {
 
 
         //textScreen Attributes
-        textScreen.setSize(380, 100);
+        textScreen.setSize(175, 50);
         textScreen.setLocation(7, 5);
         textScreen.setEditable(false);
+
+        resultScreen.setSize(175, 50);
+        resultScreen.setLocation(200, 5);
+        resultScreen.setEditable(false);
 
 
         button0.setSize(100, 50);

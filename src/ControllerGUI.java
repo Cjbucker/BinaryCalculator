@@ -100,8 +100,10 @@ public class ControllerGUI {
         calculatorGUI.btnClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (calculatorGUI.btnClear.isSelected());
-                calculatorGUI.textScreen.setText("");
+                if (calculatorGUI.btnClear.isSelected()) {
+                    calculatorGUI.textScreen.setText("");
+                    calculatorGUI.resultScreen.setText("");
+                }
             }
         });
 
@@ -109,7 +111,18 @@ public class ControllerGUI {
         calculatorGUI.btnToggle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if (binaryToggle){
+                    binaryToggle = false;
+                    String value = calculatorGUI.resultScreen.getText();
+                    strTotal = converter.toBinary(value);
+                    calculatorGUI.resultScreen.setText(strTotal);
+                }
+                else{
+                    binaryToggle = true;
+                    String value = calculatorGUI.resultScreen.getText();
+                    strTotal = converter.toBinary(value);
+                    calculatorGUI.resultScreen.setText(strTotal);
+                }
             }
         });
 
@@ -127,7 +140,7 @@ public class ControllerGUI {
 
                     totalValue = num1 / num2;
                     strTotal = Integer.toString(totalValue);
-                    calculatorGUI.textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
 
                 }
                 if(calculatorGUI.textScreen.getText().contains("*")) {
@@ -141,7 +154,7 @@ public class ControllerGUI {
                     totalValue = num1 + num2;
 
                     strTotal = Integer.toString(totalValue);
-                    calculatorGUI.textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
                 }
                 if(calculatorGUI.textScreen.getText().contains("-")) {
                     statement = calculatorGUI.textScreen.getText().split("\\-");
@@ -154,7 +167,7 @@ public class ControllerGUI {
                     totalValue = num1 - num2;
 
                     strTotal = Integer.toString(totalValue);
-                    calculatorGUI.textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
                 }
 
 
@@ -165,12 +178,13 @@ public class ControllerGUI {
 
                     strTotal = doubleNumberOperator.add(strNum1, strNum2);
                 }
+
                 if(binaryToggle){
-                    calculatorGUI.textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
                 }
                 else{
                     strTotal = converter.toDecimal(strTotal);
-                    calculatorGUI.textScreen.setText(strTotal);
+                    calculatorGUI.resultScreen.setText(strTotal);
                 }
             }
         });
