@@ -18,3 +18,15 @@ GUI and logic were complete, just linking the two components together now.
 All team was present. Zoom.
 
 ## Screenshots
+
+![Image of the user interface](https://line98.dev/projects/binarycalculator/Calculator1.png)
+
+![An example of square of a binary number](https://line98.dev/projects/binarycalculator/Calculator2.png)
+
+![An example of functionality](https://line98.dev/projects/binarycalculator/Calculator3.png)
+
+![An example of binary to decimal conversion](https://line98.dev/projects/binarycalculator/Calculator4.png)
+
+![An example of addition](https://line98.dev/projects/binarycalculator/Calculator5.png)
+
+![An example of subtraction](https://line98.dev/projects/binarycalculator/Calculator6.png)
