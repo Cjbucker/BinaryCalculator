@@ -10,8 +10,11 @@ This is a binary calculator adding basic functionality like add, subtract, multi
 ## Meetings
 ### Sunday, September 6 @ 2pm
 This meeting was the original meeting to divide the work and set expectations for the project.
-All team was there.
+All team was present. Zoom.
 
 ### Tuesday, September 8 @ 3pm
 This meeting is to check progress and start working on integrating components together.
 GUI and logic were complete, just linking the two components together now.
+All team was present. Zoom.
+
+## Screenshots
