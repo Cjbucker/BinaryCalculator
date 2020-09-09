@@ -1,9 +1,19 @@
 public class SingleNumberOperations {
-    public static String getSquare(String number) {
-        return String.valueOf((int) Math.pow(Double.parseDouble(number), 2));
+
+    static Converter numberConverter = new Converter();
+
+    public static String getSquare(String input) {
+        int number = Integer.parseInt(numberConverter.toDecimal(input));
+        String decimal = Integer.toString((int) Math.pow(number, 2));
+        return numberConverter.toBinary(decimal);
     }
-    public static String getSquareRoot(String number) {
-//        Make number positive to handle square root with integers without handling unreal
-        return String.valueOf((int) Math.sqrt(Math.abs(Double.parseDouble(number))));
+    public static String getSquareRoot(String input) {
+        System.out.println(input);
+        int number = Integer.parseInt(numberConverter.toDecimal(input));
+        System.out.println(number);
+        String decimal = Integer.toString((int) Math.sqrt(number));
+        String binary = numberConverter.toBinary(decimal);
+        System.out.println(binary);
+        return binary;
     }
 }
