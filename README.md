@@ -1,5 +1,7 @@
 # BinaryCalculator
 This is a binary calculator adding basic functionality like add, subtract, multiplication, and division.
+## Technical Specifications
+This project was created using Oracle JavaJDK 14 as well as with OpenJDK 14 as well. Only external library used was JUNIT5.4 for the tests. The GUI was created using JavaX.
 
 - Iqra = GUI
 - Chris Bucker = Two digit operations
@@ -8,6 +10,7 @@ This is a binary calculator adding basic functionality like add, subtract, multi
 - Jacob = Conversion methods
 
 ## Meetings
+All members were present for the full duration of all meetings. All meetings were held over [Zoom](https://bsu.zoom.us).
 ### Sunday, September 6 @ 2pm
 This meeting was the original meeting to divide the work and set expectations for the project.
 All team was present. Zoom.
