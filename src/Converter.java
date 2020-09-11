@@ -11,7 +11,18 @@ public class Converter {
 
     public String toBinary(String decimalNumber) {
         int decimal = Integer.parseInt(decimalNumber);
-        String binaryString = Integer.toBinaryString(decimal);
+        return convertDecimalToBinaryString(decimal);
+    }
+
+    private String convertDecimalToBinaryString(int decimal) {
+        String binaryString;
+        if (decimal >= 0){
+            binaryString = Integer.toBinaryString(decimal);
+        }
+        else{
+            decimal = Math.abs(decimal);
+            binaryString = "-" + Integer.toBinaryString(decimal);
+        }
         return binaryString;
     }
 

@@ -13,6 +13,11 @@ public class TestDoubleNumberOperation {
     }
 
     @Test
+    public void testSubtractionToNegative(){
+        assertEquals("-110", DoubleNumberOperation.subtract("10","1000"));
+    }
+
+    @Test
     public void testMultiplication(){
         assertEquals("111111010", DoubleNumberOperation.multiply("10110","10111"));
     }
